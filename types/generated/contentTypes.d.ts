@@ -1007,13 +1007,14 @@ export interface ApiSlideSlide extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    desktop: Schema.Attribute.Media<'images' | 'files'> &
+    desktop: Schema.Attribute.Media<'images' | 'files' | 'videos'> &
       Schema.Attribute.Required;
     link: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::slide.slide'> &
       Schema.Attribute.Private;
-    mobile: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    mobile: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.Required;
     order: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
