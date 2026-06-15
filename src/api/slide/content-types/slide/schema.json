@@ -21,7 +21,8 @@
       "required": true,
       "allowedTypes": [
         "images",
-        "files"
+        "files",
+        "videos"
       ]
     },
     "mobile": {
@@ -29,7 +30,8 @@
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images"
+        "images",
+        "videos"
       ]
     },
     "order": {
