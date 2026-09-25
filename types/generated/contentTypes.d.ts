@@ -369,6 +369,106 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAnswerHubCategoryAnswerHubCategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'answer_hub_categories';
+  info: {
+    description: 'A topic used to organise Answer Hub guides';
+    displayName: 'Answer Hub Category';
+    pluralName: 'answer-hub-categories';
+    singularName: 'answer-hub-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    faqs: Schema.Attribute.Component<'answer-hub.faq', true>;
+    guides: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::answer-hub-guide.answer-hub-guide'
+    >;
+    intro: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::answer-hub-category.answer-hub-category'
+    > &
+      Schema.Attribute.Private;
+    metadata: Schema.Attribute.Component<'metadata.metadata', false> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    rank: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    relatedServices: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::service.service'
+    >;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiAnswerHubGuideAnswerHubGuide
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'answer_hub_guides';
+  info: {
+    description: 'An authored guide displayed in the storefront Answer Hub';
+    displayName: 'Answer Hub Guide';
+    pluralName: 'answer-hub-guides';
+    singularName: 'answer-hub-guide';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::answer-hub-category.answer-hub-category'
+    > &
+      Schema.Attribute.Required;
+    cover: Schema.Attribute.Media<'images'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    faqs: Schema.Attribute.Component<'answer-hub.faq', true>;
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::answer-hub-guide.answer-hub-guide'
+    > &
+      Schema.Attribute.Private;
+    metadata: Schema.Attribute.Component<'metadata.metadata', false> &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    quickAnswer: Schema.Attribute.Text & Schema.Attribute.Required;
+    rank: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    readTime: Schema.Attribute.String;
+    relatedGuides: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::answer-hub-guide.answer-hub-guide'
+    >;
+    relatedServices: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::service.service'
+    >;
+    sections: Schema.Attribute.Component<'answer-hub.section', true> &
+      Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBestSellerProductBestSellerProduct
   extends Struct.CollectionTypeSchema {
   collectionName: 'best_seller_products';
@@ -1663,6 +1763,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::answer-hub-category.answer-hub-category': ApiAnswerHubCategoryAnswerHubCategory;
+      'api::answer-hub-guide.answer-hub-guide': ApiAnswerHubGuideAnswerHubGuide;
       'api::best-seller-product.best-seller-product': ApiBestSellerProductBestSellerProduct;
       'api::blog.blog': ApiBlogBlog;
       'api::brand.brand': ApiBrandBrand;

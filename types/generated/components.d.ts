@@ -1,5 +1,43 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AnswerHubFaq extends Struct.ComponentSchema {
+  collectionName: 'components_answer_hub_faqs';
+  info: {
+    description: 'A question and answer embedded in Answer Hub content';
+    displayName: 'Answer Hub FAQ';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text & Schema.Attribute.Required;
+    question: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface AnswerHubSection extends Struct.ComponentSchema {
+  collectionName: 'components_answer_hub_sections';
+  info: {
+    description: 'A structured section of an Answer Hub guide';
+    displayName: 'Answer Hub Section';
+  };
+  attributes: {
+    anchorId: Schema.Attribute.String & Schema.Attribute.Required;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    paragraphs: Schema.Attribute.Component<'answer-hub.text-item', true> &
+      Schema.Attribute.Required;
+    steps: Schema.Attribute.Component<'answer-hub.text-item', true>;
+  };
+}
+
+export interface AnswerHubTextItem extends Struct.ComponentSchema {
+  collectionName: 'components_answer_hub_text_items';
+  info: {
+    description: 'A paragraph or ordered step in an Answer Hub section';
+    displayName: 'Answer Hub Text Item';
+  };
+  attributes: {
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
 export interface AuthorAuthor extends Struct.ComponentSchema {
   collectionName: 'components_author_authors';
   info: {
@@ -603,6 +641,9 @@ export interface ViewportViewport extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'answer-hub.faq': AnswerHubFaq;
+      'answer-hub.section': AnswerHubSection;
+      'answer-hub.text-item': AnswerHubTextItem;
       'author.author': AuthorAuthor;
       'box-content-details.box-content-details': BoxContentDetailsBoxContentDetails;
       'box-content.box-content': BoxContentBoxContent;
