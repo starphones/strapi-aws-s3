@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_answer_hub_text_items",
+  "info": {
+    "displayName": "Answer Hub Text Item",
+    "description": "A paragraph or ordered step in an Answer Hub section"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

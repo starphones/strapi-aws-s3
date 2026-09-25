@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "answer_hub_categories",
+  "info": {
+    "singularName": "answer-hub-category",
+    "pluralName": "answer-hub-categories",
+    "displayName": "Answer Hub Category",
+    "description": "A topic used to organise Answer Hub guides"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "intro": {
+      "type": "text",
+      "required": true
+    },
+    "rank": {
+      "type": "integer",
+      "default": 0
+    },
+    "faqs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "answer-hub.faq"
+    },
+    "guides": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::answer-hub-guide.answer-hub-guide",
+      "mappedBy": "category"
+    },
+    "relatedServices": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service"
+    },
+    "metadata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "metadata.metadata",
+      "required": true
+    }
+  }
+}
