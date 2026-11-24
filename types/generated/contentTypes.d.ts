@@ -1193,6 +1193,14 @@ export interface ApiStoreLocationStoreLocation
     metadata: Schema.Attribute.Component<'metadata.metadata', false>;
     name: Schema.Attribute.String & Schema.Attribute.Required;
     phone: Schema.Attribute.String & Schema.Attribute.Required;
+    posShopId: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 2147483647;
+        },
+        number
+      >;
     postCode: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     rootStore: Schema.Attribute.String &
