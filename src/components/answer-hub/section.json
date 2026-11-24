@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_answer_hub_sections",
+  "info": {
+    "displayName": "Answer Hub Section",
+    "description": "A structured section of an Answer Hub guide"
+  },
+  "options": {},
+  "attributes": {
+    "anchorId": {
+      "type": "string",
+      "required": true,
+      "regex": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "paragraphs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "answer-hub.text-item",
+      "required": true
+    },
+    "steps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "answer-hub.text-item"
+    }
+  }
+}

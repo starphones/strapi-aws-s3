@@ -20,6 +20,11 @@
       "unique": true,
       "required": true
     },
+    "posShopId": {
+      "type": "integer",
+      "min": 1,
+      "max": 2147483647
+    },
     "rootStore": {
       "type": "string",
       "required": true,

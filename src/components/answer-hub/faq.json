@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_answer_hub_faqs",
+  "info": {
+    "displayName": "Answer Hub FAQ",
+    "description": "A question and answer embedded in Answer Hub content"
+  },
+  "options": {},
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "answer": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
